@@ -39,7 +39,7 @@ class Logger {
 	
 	/// Initializes the Logger and optionally creates a log file.
 	/// - Parameter createLogFile: A Boolean indicating whether to create a log file.
-	init(createLogFile: Bool) {
+	init(createLogFile: Bool = false) {
 		if createLogFile {
 			LogFileManager.createLogFile()
 		}

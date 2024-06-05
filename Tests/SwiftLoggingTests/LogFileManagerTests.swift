@@ -11,7 +11,7 @@ import XCTest
 final class LogFileManagerTests: XCTestCase {
 	func testCreateLogFile() throws {
 		LogFileManager.createLogFile()
-		NSLog("Foo)")
+		NSLog("Foo")
 	}
 	
 	func testGetLogFileURLs () {
