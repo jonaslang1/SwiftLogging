@@ -52,7 +52,7 @@ public class Logger {
 	///   - file: The file name where the log is called (default is current file).
 	///   - function: The function name where the log is called (default is current function).
 	///   - line: The line number where the log is called (default is current line).
-	public func info(_ str: StaticString, shouldLogContext: Bool = false, file: String = #file, function: String = #function, line: Int = #line) {
+	public func info(_ str: String, shouldLogContext: Bool = false, file: String = #file, function: String = #function, line: Int = #line) {
 		log(level: .info, str, shouldLogContext: shouldLogContext, file: file, function: function, line: line)
 	}
 	
@@ -63,7 +63,7 @@ public class Logger {
 	///   - file: The file name where the log is called (default is current file).
 	///   - function: The function name where the log is called (default is current function).
 	///   - line: The line number where the log is called (default is current line).
-	public func warning(_ str: StaticString, shouldLogContext: Bool = false, file: String = #file, function: String = #function, line: Int = #line) {
+	public func warning(_ str: String, shouldLogContext: Bool = false, file: String = #file, function: String = #function, line: Int = #line) {
 		log(level: .warning, str, shouldLogContext: shouldLogContext, file: file, function: function, line: line)
 	}
 	
@@ -74,7 +74,7 @@ public class Logger {
 	///   - file: The file name where the log is called (default is current file).
 	///   - function: The function name where the log is called (default is current function).
 	///   - line: The line number where the log is called (default is current line).
-	public func error(_ str: StaticString, shouldLogContext: Bool = true, file: String = #file, function: String = #function, line: Int = #line) {
+	public func error(_ str: String, shouldLogContext: Bool = true, file: String = #file, function: String = #function, line: Int = #line) {
 		log(level: .error, str, shouldLogContext: shouldLogContext, file: file, function: function, line: line)
 	}
 	
@@ -86,7 +86,7 @@ public class Logger {
 	///   - file: The file name where the log is called (default is current file).
 	///   - function: The function name where the log is called (default is current function).
 	///   - line: The line number where the log is called (default is current line).
-	public func log(level: LogLevel, _ str: StaticString, shouldLogContext: Bool = false, file: String = #file, function: String = #function, line: Int = #line) {
+	public func log(level: LogLevel, _ str: String, shouldLogContext: Bool = false, file: String = #file, function: String = #function, line: Int = #line) {
 		let context = Context(file: file, function: function, line: line)
 		handleLog(level: level, str: str.description, shouldLogContext: shouldLogContext, context: context)
 	}
@@ -105,6 +105,32 @@ public class Logger {
 			fullString += " ➜ \(context.description)"
 		}
 		NSLog(fullString)
+	}
+}
+
+
+/// Logger class extension for logging errors.
+public extension Logger {
+	/// Logs an error.
+	/// - Parameters:
+	///   - error: The error to log.
+	///   - shouldLogContext: Whether to include the context in the log message.
+	///   - file: The file name where the log is called (default is current file).
+	///   - function: The function name where the log is called (default is current function).
+	///   - line: The line number where the log is called (default is current line).
+	func log(_ error: any Error, shouldLogContext: Bool = true, file: String = #file, function: String = #function, line: Int = #line) {
+		log(level: .error, "\(error)", shouldLogContext: shouldLogContext, file: file, function: function, line: line)
+	}
+	
+	/// Logs an error.
+	/// - Parameters:
+	///   - error: The error to log.
+	///   - shouldLogContext: Whether to include the context in the log message.
+	///   - file: The file name where the log is called (default is current file).
+	///   - function: The function name where the log is called (default is current function).
+	///   - line: The line number where the log is called (default is current line).
+	func error(_ error: any Error, shouldLogContext: Bool = true, file: String = #file, function: String = #function, line: Int = #line) {
+		log(error, shouldLogContext: shouldLogContext, file: file, function: function, line: line)
 	}
 }
 
