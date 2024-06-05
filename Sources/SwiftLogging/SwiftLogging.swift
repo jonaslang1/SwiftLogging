@@ -8,7 +8,7 @@
 import Foundation
 
 /// Logger class for handling different levels of log messages.
-class Logger {
+public class Logger {
 	/// Enum representing the log levels.
 	enum LogLevel {
 		case info

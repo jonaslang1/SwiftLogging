@@ -8,7 +8,7 @@
 import Foundation
 
 /// Utility class for managing log files.
-class LogFileManager {
+public class LogFileManager {
 	/// The file manager instance.
 	static let fileManager = FileManager.default
 	
