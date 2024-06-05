@@ -8,7 +8,7 @@
 import Foundation
 
 /// Logger class for handling different levels of log messages.
-class Logger {
+public class Logger {
 	/// Enum representing the log levels.
 	enum LogLevel {
 		case info
@@ -39,7 +39,7 @@ class Logger {
 	
 	/// Initializes the Logger and optionally creates a log file.
 	/// - Parameter createLogFile: A Boolean indicating whether to create a log file.
-	init(createLogFile: Bool = false) {
+	public init(createLogFile: Bool = false) {
 		if createLogFile {
 			LogFileManager.createLogFile()
 		}
@@ -52,7 +52,7 @@ class Logger {
 	///   - file: The file name where the log is called (default is current file).
 	///   - function: The function name where the log is called (default is current function).
 	///   - line: The line number where the log is called (default is current line).
-	func info(_ str: StaticString, shouldLogContext: Bool = false, file: String = #file, function: String = #function, line: Int = #line) {
+	public func info(_ str: StaticString, shouldLogContext: Bool = false, file: String = #file, function: String = #function, line: Int = #line) {
 		log(level: .info, str, shouldLogContext: shouldLogContext, file: file, function: function, line: line)
 	}
 	
@@ -63,7 +63,7 @@ class Logger {
 	///   - file: The file name where the log is called (default is current file).
 	///   - function: The function name where the log is called (default is current function).
 	///   - line: The line number where the log is called (default is current line).
-	func warning(_ str: StaticString, shouldLogContext: Bool = false, file: String = #file, function: String = #function, line: Int = #line) {
+	public func warning(_ str: StaticString, shouldLogContext: Bool = false, file: String = #file, function: String = #function, line: Int = #line) {
 		log(level: .warning, str, shouldLogContext: shouldLogContext, file: file, function: function, line: line)
 	}
 	
@@ -74,7 +74,7 @@ class Logger {
 	///   - file: The file name where the log is called (default is current file).
 	///   - function: The function name where the log is called (default is current function).
 	///   - line: The line number where the log is called (default is current line).
-	func error(_ str: StaticString, shouldLogContext: Bool = true, file: String = #file, function: String = #function, line: Int = #line) {
+	public func error(_ str: StaticString, shouldLogContext: Bool = true, file: String = #file, function: String = #function, line: Int = #line) {
 		log(level: .error, str, shouldLogContext: shouldLogContext, file: file, function: function, line: line)
 	}
 	
@@ -86,7 +86,7 @@ class Logger {
 	///   - file: The file name where the log is called (default is current file).
 	///   - function: The function name where the log is called (default is current function).
 	///   - line: The line number where the log is called (default is current line).
-	func log(level: LogLevel, _ str: StaticString, shouldLogContext: Bool = false, file: String = #file, function: String = #function, line: Int = #line) {
+	public func log(level: LogLevel, _ str: StaticString, shouldLogContext: Bool = false, file: String = #file, function: String = #function, line: Int = #line) {
 		let context = Context(file: file, function: function, line: line)
 		handleLog(level: level, str: str.description, shouldLogContext: shouldLogContext, context: context)
 	}

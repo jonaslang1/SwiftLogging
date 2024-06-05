@@ -8,7 +8,7 @@
 import Foundation
 
 /// Utility class for managing log files.
-class LogFileManager {
+public class LogFileManager {
 	/// The file manager instance.
 	static let fileManager = FileManager.default
 	
@@ -24,7 +24,7 @@ class LogFileManager {
 	
 	/// Retrieves a list of log files in the document directory.
 	/// - Returns: An array of URLs representing log files, or nil if an error occurs.
-	static func getLogFiles() -> [URL]? {
+	public static func getLogFiles() -> [URL]? {
 		guard let directory = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first else {
 			return nil
 		}
@@ -40,7 +40,7 @@ class LogFileManager {
 	/// Reads the contents of a log file at the specified path.
 	/// - Parameter url: The URL of the log file to read.
 	/// - Returns: The contents of the log file as a string, or nil if an error occurs.
-	static func readLogFile(atPath url: URL) -> String? {
+	public static func readLogFile(atPath url: URL) -> String? {
 		do {
 			return try String(contentsOfFile: url.absoluteString.replacingOccurrences(of: "file://", with: ""), encoding: .utf8)
 		} catch {
