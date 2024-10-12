@@ -24,16 +24,16 @@ public class LogFileManager {
 	
 	/// Retrieves a list of log files in the document directory.
 	/// - Returns: An array of URLs representing log files, or nil if an error occurs.
-	public static func getLogFiles() -> [URL]? {
+	public static func getLogFiles() -> [URL] {
 		guard let directory = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first else {
-			return nil
+			return []
 		}
 		do {
 			let urls = try fileManager.contentsOfDirectory(at: directory, includingPropertiesForKeys: []).filter { $0.pathExtension == "log" }
 			return urls
 		} catch {
 			print(error)
-			return nil
+			return []
 		}
 	}
 	

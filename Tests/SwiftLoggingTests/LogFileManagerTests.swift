@@ -22,7 +22,7 @@ final class LogFileManagerTests: XCTestCase {
 	func testGetLogFiles() {
 		let urls = LogFileManager.getLogFiles()
 		XCTAssertNotNil(urls)
-		let url = urls!.first
+		let url = urls.first
 		XCTAssertNotNil(url)
 		let content = LogFileManager.readLogFile(atPath: url!)
 		XCTAssertNotNil(content)
